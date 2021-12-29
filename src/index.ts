@@ -6,7 +6,7 @@ enum MatchResult {
     Draw = 'D'
 }
 
-const data = new CsvFileReader('football.csv')
+const data = new CsvFileReader('1.csv')
 data.read() 
 
 let wins = 0
