@@ -1,10 +1,10 @@
 import fs from 'fs'
 import path from 'path'
 
-export abstract class CsvFileReader<Type> {
-    abstract data: Type[]
+export abstract class CsvFileReader<T> {
+    abstract data: T[]
     abstract filename: string
-    abstract mapRow(row: string): Type
+    abstract mapRow(row: string): T
 
     read(): void {
         try {

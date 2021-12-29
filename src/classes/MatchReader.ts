@@ -2,7 +2,7 @@ import { getMatchResult, MatchResult } from '../utils/MatchResults'
 import { parseDate } from '../utils/parseDate'
 import { CsvFileReader } from './CsvFileReader'
 
-type match = {
+type Match = {
     date: Date
     homeTeam: String
     awayTeam: String
@@ -12,14 +12,14 @@ type match = {
     referee: String
 }
 
-export class MatchReader extends CsvFileReader<match> {
-    data: match[] = []
+export class MatchReader extends CsvFileReader<Match> {
+    data: Match[] = []
     
     constructor(public filename: string = filename) {
         super()
     }
 
-    mapRow(row: string): match {
+    mapRow(row: string): Match {
         let tmpArr: string[] = row.split(',')
 
         return {
