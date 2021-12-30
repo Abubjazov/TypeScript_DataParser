@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+
 import { DataReader } from './MatchReader'
 
 export class CsvFileReader implements DataReader {

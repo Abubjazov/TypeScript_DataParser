@@ -1,7 +1,20 @@
+import fs from 'fs'
+import path from 'path'
+
 import { OutputTarget } from '../Summary';
 
 export class HtmlReport implements OutputTarget {
     print(report: string): void {
-        console.log(`<p> ${report} </p>`)
+        const html = `
+            <div>
+                <h1>Report</h1>
+                <p> ${report} </p>
+            </div>
+        `
+
+        fs.appendFile(path.join(__dirname, `../../../reports/report${Date.now()}.txt`), html, (err) => {
+            if (err) throw err
+            console.log('The HTML was appended to file!')
+        })
     }
 }
