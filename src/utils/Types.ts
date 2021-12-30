@@ -2,10 +2,10 @@ import { MatchResult } from './MatchResults';
 
 export type Match = {
     date: Date
-    homeTeam: String
-    awayTeam: String
-    homeTeamGoals: Number
-    awayTeamGoals: Number
+    homeTeam: string
+    awayTeam: string
+    homeTeamGoals: number
+    awayTeamGoals: number
     matchResult: MatchResult
-    referee: String
+    referee: string
 }
