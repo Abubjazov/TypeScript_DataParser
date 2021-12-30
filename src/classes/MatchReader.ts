@@ -1,8 +1,43 @@
+// import { getMatchResult, MatchResult } from '../utils/MatchResults'
+// import { parseDate } from '../utils/parseDate'
+// import { CsvFileReader } from './CsvFileReader'
+
+// type Match = {
+//     date: Date
+//     homeTeam: String
+//     awayTeam: String
+//     homeTeamGoals: Number
+//     awayTeamGoals: Number
+//     matchResult: MatchResult
+//     referee: String
+// }
+
+// export class MatchReader extends CsvFileReader<Match> {
+//     data: Match[] = []
+    
+//     constructor(public filename: string = filename) {
+//         super()
+//     }
+
+//     mapRow(row: string): Match {
+//         let tmpArr: string[] = row.split(',')
+
+//         return {
+//             date: parseDate(tmpArr[0]),
+//             homeTeam: tmpArr[1],
+//             awayTeam: tmpArr[2],
+//             homeTeamGoals: +tmpArr[3],
+//             awayTeamGoals: +tmpArr[4],
+//             matchResult: getMatchResult(tmpArr[5]),
+//             referee: tmpArr[6]
+//         }
+//     }
+// }
+
 import { getMatchResult, MatchResult } from '../utils/MatchResults'
 import { parseDate } from '../utils/parseDate'
-import { CsvFileReader } from './CsvFileReader'
 
-type Match = {
+type match = {
     date: Date
     homeTeam: String
     awayTeam: String
@@ -12,24 +47,27 @@ type Match = {
     referee: String
 }
 
-export class MatchReader extends CsvFileReader<Match> {
-    data: Match[] = []
-    
-    constructor(public filename: string = filename) {
-        super()
-    }
+interface DataReader {
+    read(): void
+    data: string[][]
+}
+export class MatchReader {
+    matches: match[] = []
 
-    mapRow(row: string): Match {
-        let tmpArr: string[] = row.split(',')
+    constructor(public reader: DataReader) {}
 
-        return {
-            date: parseDate(tmpArr[0]),
-            homeTeam: tmpArr[1],
-            awayTeam: tmpArr[2],
-            homeTeamGoals: +tmpArr[3],
-            awayTeamGoals: +tmpArr[4],
-            matchResult: getMatchResult(tmpArr[5]),
-            referee: tmpArr[6]
-        }
+    load(): void {
+        this.reader.read()
+        this.matches = this.reader.data.map((row: string[]): match => {    
+            return {
+                date: parseDate(row[0]),
+                homeTeam: row[1],
+                awayTeam: row[2],
+                homeTeamGoals: +row[3],
+                awayTeamGoals: +row[4],
+                matchResult: getMatchResult(row[5]),
+                referee: row[6]
+            }
+        })
     }
 }
