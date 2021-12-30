@@ -34,31 +34,22 @@
 //     }
 // }
 
-import { getMatchResult, MatchResult } from '../utils/MatchResults'
+import { getMatchResult } from '../utils/MatchResults'
 import { parseDate } from '../utils/parseDate'
-
-type match = {
-    date: Date
-    homeTeam: String
-    awayTeam: String
-    homeTeamGoals: Number
-    awayTeamGoals: Number
-    matchResult: MatchResult
-    referee: String
-}
+import { Match } from '../utils/Types'
 
 export interface DataReader {
     data: string[][]
     read(): void
 }
 export class MatchReader {
-    matches: match[] = []
+    matches: Match[] = []
 
     constructor(public reader: DataReader) {}
 
     load(): void {
         this.reader.read()
-        this.matches = this.reader.data.map((row: string[]): match => {    
+        this.matches = this.reader.data.map((row: string[]): Match => {    
             return {
                 date: parseDate(row[0]),
                 homeTeam: row[1],
