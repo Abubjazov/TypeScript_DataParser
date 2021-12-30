@@ -23,8 +23,9 @@
 
 import fs from 'fs'
 import path from 'path'
+import { DataReader } from './MatchReader'
 
-export class CsvFileReader {
+export class CsvFileReader implements DataReader {
     data: string[][] = []
 
     constructor(public filename: string = filename) {}

@@ -47,9 +47,9 @@ type match = {
     referee: String
 }
 
-interface DataReader {
-    read(): void
+export interface DataReader {
     data: string[][]
+    read(): void
 }
 export class MatchReader {
     matches: match[] = []
