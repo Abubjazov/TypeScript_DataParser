@@ -11,8 +11,7 @@ export class HtmlReport implements OutputTarget {
                 <p> ${report} </p>
             </div>
         `
-
-        fs.appendFile(path.join(__dirname, `../../../reports/report${Date.now()}.txt`), html, (err) => {
+        fs.appendFile(path.join(__dirname, `../../../reports/report${Date.now()}.html`), html, (err) => {
             if (err) throw err
             console.log('The HTML was appended to file!')
         })

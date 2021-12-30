@@ -9,8 +9,10 @@ import { ConsoleReport } from './classes/reporters/ConsoleReport'
 const data = new MatchReader(new CsvFileReader('1.csv'))
 data.load()
 
-const MUSummary = new Summary(new WinsAnalysis('Man United'), new ConsoleReport())
+// const MUSummary = new Summary(new WinsAnalysis('Man United'), new ConsoleReport())
+const MUSummary = Summary.winsAnalysisWithHtmlReport('Man United')
 MUSummary.buildAndPrintReport(data.matches)
 
-const CHSummary = new Summary(new AverageGoalsAnalysis('Chelsea'), new HtmlReport())
+// const CHSummary = new Summary(new AverageGoalsAnalysis('Chelsea'), new HtmlReport())
+const CHSummary = Summary.averageGoalsAnalysisWithConsoleReport('Chelsea')
 CHSummary.buildAndPrintReport(data.matches)
