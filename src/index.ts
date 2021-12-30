@@ -1,30 +1,16 @@
-// import { MatchReader } from './classes/MatchReader'
-import { MatchResult } from './utils/MatchResults'
-
-// const data = new MatchReader('football.csv')
-// data.read()
-
-
 import { CsvFileReader } from './classes/CsvFileReader'
 import { MatchReader } from './classes/MatchReader'
-import { WinsAnalysis } from './classes/analyzers/WinsAnalisis'
-import { ConsoleReport } from './classes/reporters/ConsoleReport'
 import { Summary } from './classes/Summary'
+import { WinsAnalysis } from './classes/analyzers/WinsAnalisis'
 import { AverageGoalsAnalysis } from './classes/analyzers/AverageGoalsAnalysis'
 import { HtmlReport } from './classes/reporters/HtmlReport'
+import { ConsoleReport } from './classes/reporters/ConsoleReport'
 
-const reader = new CsvFileReader('1.csv')
-const data = new MatchReader(reader)
+const data = new MatchReader(new CsvFileReader('1.csv'))
 data.load()
 
-const MUanalyzer = new WinsAnalysis('Man United')
-const MUreporter = new ConsoleReport()
-const MUSummary = new Summary(MUanalyzer, MUreporter)
-
+const MUSummary = new Summary(new WinsAnalysis('Man United'), new ConsoleReport())
 MUSummary.buildAndPrintReport(data.matches)
 
-const CHanalyzer = new AverageGoalsAnalysis('Chelsea')
-const CHreporter = new HtmlReport()
-const CHSummary = new Summary(CHanalyzer, CHreporter)
-
+const CHSummary = new Summary(new AverageGoalsAnalysis('Chelsea'), new HtmlReport())
 CHSummary.buildAndPrintReport(data.matches)
