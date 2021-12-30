@@ -6,7 +6,8 @@ import { AverageGoalsAnalysis } from './classes/analyzers/AverageGoalsAnalysis'
 import { HtmlReport } from './classes/reporters/HtmlReport'
 import { ConsoleReport } from './classes/reporters/ConsoleReport'
 
-const data = new MatchReader(new CsvFileReader('1.csv'))
+// const data = new MatchReader(new CsvFileReader('1.csv'))
+const data = MatchReader.fromCSV('football.csv')
 data.load()
 
 // const MUSummary = new Summary(new WinsAnalysis('Man United'), new ConsoleReport())
